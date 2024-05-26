@@ -1,12 +1,9 @@
-import {  useReduce } from "react";
+import {  useReducer } from "react";
 
 const intialState = {count: 0, step: 1};
 
-
 function reducer(state, action) {
-// if (action.type === 'inc') return state + 1;
-// if (action.type === 'dec') return state - 1 ;
-// if (action.type === 'setCount') return action.payload;
+
   switch (action.type) {
   case'dec':
   return {...state, count: state.count - state.step};
@@ -24,15 +21,13 @@ function reducer(state, action) {
 };
 
 function DateCounter() {
-  const [state, dispatch] = useReduce(reducer, intialState);
-  const [count, step] = state;
+  const [state, dispatch] = useReducer(reducer, intialState);
+  const {count, step} = state;
 
   const date = new Date("june 21 2027");
   date.setDate(date.getDate() + count);
 
   const dec = function () {
-    // setCount((count) => count - 1);
-    // setCount((count) => count - step);
     dispatch({type: 'dec'});
   };
 
